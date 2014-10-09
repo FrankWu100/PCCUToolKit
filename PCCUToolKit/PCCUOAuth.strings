@@ -1,0 +1,12 @@
+/* 
+  PCCUOAuth.strings
+  PCCUToolKit Example
+
+  Created by FrankWu on 2014/10/9.
+  Copyright (c) 2014年 FrankWu. All rights reserved.
+*/
+
+"sign_in" = "登  入";
+"error" = "錯誤";
+"confirm" = "確認";
+"access_denied" = "訪問拒絕";
