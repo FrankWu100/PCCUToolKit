@@ -6,3 +6,4 @@ pod 'AFNetworking', '~> 2.4'
 # SVWebViewController 2014/10/08
 pod 'SVWebViewController', :git => 'https://github.com/TransitApp/SVWebViewController', :commit => '5be38e427d'
 
+pod 'MBProgressHUD', '~> 0.9'

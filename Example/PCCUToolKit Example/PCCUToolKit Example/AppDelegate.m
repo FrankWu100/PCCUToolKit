@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "PCCU.h"
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface AppDelegate ()
 
@@ -29,7 +30,17 @@
     }
     else
     {
-        [[PCCUOAuthUserData alloc] checkUserData];
+        
+        UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+        
+        [MBProgressHUD showHUDAddedTo:rootViewController.view animated:YES];
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.00 * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            // Do something...
+            
+            [[PCCUOAuthUserData alloc] checkUserData];
+            [MBProgressHUD hideHUDForView:rootViewController.view animated:YES];
+        });
         
         [self openFirstView];
     }

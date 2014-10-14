@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>8401BF88-6DFF-4D10-9060-46F127A27583</string>
+	<key>IDESourceControlProjectName</key>
+	<string>PCCUToolKit</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F0E78F7B33A4DA2C7DA2DCEA8627138343F536EC</key>
+		<string>https://github.com/FrankWu100/PCCUToolKit.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>PCCUToolKit.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F0E78F7B33A4DA2C7DA2DCEA8627138343F536EC</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/FrankWu100/PCCUToolKit.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F0E78F7B33A4DA2C7DA2DCEA8627138343F536EC</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F0E78F7B33A4DA2C7DA2DCEA8627138343F536EC</string>
+			<key>IDESourceControlWCCName</key>
+			<string>PCCUToolKit</string>
+		</dict>
+	</array>
+</dict>
+</plist>

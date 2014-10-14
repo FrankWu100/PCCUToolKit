@@ -20,10 +20,12 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - MBProgressHUD (0.9)
   - SVWebViewController (1.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.4)
+  - MBProgressHUD (~> 0.9)
   - SVWebViewController (from `https://github.com/TransitApp/SVWebViewController`, commit `5be38e427d`)
 
 EXTERNAL SOURCES:
@@ -33,6 +35,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   SVWebViewController: e23a0cf92c2185d584787f0422b14592dd160fca
 
 COCOAPODS: 0.34.1
