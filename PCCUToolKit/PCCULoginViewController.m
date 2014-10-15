@@ -98,7 +98,10 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
     UIImageView *theIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake((viewSize.width-120)/2, (viewSize.height-120)*4/7-100+TopLayoutGuide, 120, 120)];
     //    NSLog(@"%f, %f", (viewSize.width-120)/2, (viewSize.height-120)*4/7-80);
     
-    UIImage *iconImage = [UIImage imageNamed:@"iTunesArtwork.png"];
+    UIImage *iconImage = [UIImage imageNamed:@"iTunesArtworkSample.png"];
+    if (!iconImage) {
+        iconImage = [UIImage imageNamed:@"iTunesArtwork.png"];
+    }
     
     theIconImageView.layer.shadowColor = [[UIColor grayColor] CGColor];
     theIconImageView.layer.shadowOffset = CGSizeMake(1.0f, -1.0f); // [水平偏移, 垂直偏移]
@@ -178,7 +181,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
     
     NSString *version = [[UIDevice currentDevice] systemVersion];
     if ([version floatValue] >= 7.0) {
-//        [[UINavigationBar appearance] setTranslucent:NO];
+        //        [[UINavigationBar appearance] setTranslucent:NO];
         [[UINavigationBar appearance] setTintColor:NULL];
         [[UINavigationBar appearance] setBarTintColor:NULL];
         
@@ -190,7 +193,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
         
         [[UINavigationBar appearance] setTintColor:NULL];
         
-//        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent];
+        //        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent];
         
         // Change the appearance of NavigationBar
         [[UINavigationBar appearance] setBackgroundImage:NULL forBarMetrics:UIBarMetricsDefault];
@@ -206,7 +209,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
     }
     
     SVModalWebViewController *webViewController = [[SVModalWebViewController alloc] initWithURL:oauthUrl];
-//    webViewController.hideActionBarButton = YES;
+    //    webViewController.hideActionBarButton = YES;
     
     
     [self presentViewController:webViewController animated:YES completion:NULL];

@@ -25,7 +25,7 @@
 		289C1B4719E672D7002DA28B /* PCCUOAuthUserData.m in Sources */ = {isa = PBXBuildFile; fileRef = 289C1B3C19E672D7002DA28B /* PCCUOAuthUserData.m */; };
 		289C1B4819E672D7002DA28B /* PCCUYYM.m in Sources */ = {isa = PBXBuildFile; fileRef = 289C1B3E19E672D7002DA28B /* PCCUYYM.m */; };
 		289C1B4B19E6794C002DA28B /* FWJSONPrint.m in Sources */ = {isa = PBXBuildFile; fileRef = 289C1B4A19E6794C002DA28B /* FWJSONPrint.m */; };
-		289C1B4D19E67A87002DA28B /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 289C1B4C19E67A87002DA28B /* iTunesArtwork.png */; };
+		289C1B4D19E67A87002DA28B /* iTunesArtworkSample.png in Resources */ = {isa = PBXBuildFile; fileRef = 289C1B4C19E67A87002DA28B /* iTunesArtworkSample.png */; };
 		289C1B4F19E67AE7002DA28B /* PCCUOAuth.strings in Resources */ = {isa = PBXBuildFile; fileRef = 289C1B4E19E67AE7002DA28B /* PCCUOAuth.strings */; };
 		9012285479EBE03631806E10 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC66257868616CB4FFDD89A1 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -76,7 +76,7 @@
 		289C1B3E19E672D7002DA28B /* PCCUYYM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PCCUYYM.m; sourceTree = "<group>"; };
 		289C1B4919E6794C002DA28B /* FWJSONPrint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FWJSONPrint.h; sourceTree = "<group>"; };
 		289C1B4A19E6794C002DA28B /* FWJSONPrint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FWJSONPrint.m; sourceTree = "<group>"; };
-		289C1B4C19E67A87002DA28B /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		289C1B4C19E67A87002DA28B /* iTunesArtworkSample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtworkSample.png; sourceTree = "<group>"; };
 		289C1B4E19E67AE7002DA28B /* PCCUOAuth.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = PCCUOAuth.strings; sourceTree = "<group>"; };
 		D49CCBE6F10063A934F2AF82 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FC66257868616CB4FFDD89A1 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -177,7 +177,7 @@
 				289C1B2C19E672D7002DA28B /* FWToolKit */,
 				289C1B2B19E672D7002DA28B /* DefaultStyle.xcassets */,
 				289C1B3319E672D7002DA28B /* LoginView.xcassets */,
-				289C1B4C19E67A87002DA28B /* iTunesArtwork.png */,
+				289C1B4C19E67A87002DA28B /* iTunesArtworkSample.png */,
 				289C1B3419E672D7002DA28B /* PCCU.h */,
 				289C1B3519E672D7002DA28B /* PCCUDefaultStyle.h */,
 				289C1B3619E672D7002DA28B /* PCCUDefaultStyle.m */,
@@ -309,7 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				289C1B4D19E67A87002DA28B /* iTunesArtwork.png in Resources */,
+				289C1B4D19E67A87002DA28B /* iTunesArtworkSample.png in Resources */,
 				289C1B0D19E66D73002DA28B /* Main.storyboard in Resources */,
 				289C1B1219E66D73002DA28B /* LaunchScreen.xib in Resources */,
 				289C1B3F19E672D7002DA28B /* DefaultStyle.xcassets in Resources */,
