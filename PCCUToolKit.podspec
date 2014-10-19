@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "PCCUToolKit"
-  s.version      = "0.1.1"
+  s.version      = "0.1.2"
   s.summary      = "The Tool Kit for PCCU"
   s.homepage     = "https://github.com/frankwu100/PCCUToolKit"
   s.license      = { :type => 'MIT License', :file => 'LICENSE' }
@@ -11,7 +11,6 @@ Pod::Spec.new do |s|
   s.resource     = 'PCCUToolKit/*.{strings,png,xcassets}'
   s.ios.dependency  'AFNetworking', '~> 2.4'
   s.ios.dependency  'SVWebViewController', '~> 1.0'
-  s.ios.dependency  'MBProgressHUD', '~> 0.9'
 
   s.subspec 'FWToolKit' do |ss|
     ss.source_files = 'PCCUToolKit/FWToolKit/*'  
