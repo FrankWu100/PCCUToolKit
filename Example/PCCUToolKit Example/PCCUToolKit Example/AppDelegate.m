@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "PCCU.h"
-#import <MBProgressHUD/MBProgressHUD.h>
 
 @interface AppDelegate ()
 
@@ -30,19 +29,19 @@
     }
     else
     {
-        
-        UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
-        
-        [MBProgressHUD showHUDAddedTo:rootViewController.view animated:YES];
-        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 2.00 * NSEC_PER_SEC);
-        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-            // Do something...
+//        UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+//        
+//        [MBProgressHUD showHUDAddedTo:rootViewController.view animated:YES];
+//        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.50 * NSEC_PER_SEC);
+//        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//            // Do something...
+//
+            if ([[PCCUOAuthUserData alloc] checkUserData])
+//                [MBProgressHUD hideHUDForView:rootViewController.view animated:YES];
             
-            [[PCCUOAuthUserData alloc] checkUserData];
-            [MBProgressHUD hideHUDForView:rootViewController.view animated:YES];
-        });
-        
-        [self openFirstView];
+            
+            [self openFirstView];
+//        });
     }
     return YES;
 }
@@ -58,13 +57,13 @@
     
     [self.window makeKeyAndVisible];
     
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"登入資料"
-                                                        message:[NSString stringWithFormat:@"AccessToken: %@\nUserAccount: %@\nUserDept: %@\nUserName: %@", [PCCUOAuthLogin getAccessToken],
-[PCCUOAuthUserData getUserAccount], [PCCUOAuthUserData getUserDept], [PCCUOAuthUserData getUserName]]
-                                                       delegate:self
-                                              cancelButtonTitle:@"確認"
-                                              otherButtonTitles:nil];
-    [alertView show];
+//    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"登入資料"
+//                                                        message:[NSString stringWithFormat:@"AccessToken: %@\nUserAccount: %@\nUserDept: %@\nUserName: %@", [PCCUOAuthLogin getAccessToken],
+//[PCCUOAuthUserData getUserAccount], [PCCUOAuthUserData getUserDept], [PCCUOAuthUserData getUserName]]
+//                                                       delegate:self
+//                                              cancelButtonTitle:@"確認"
+//                                              otherButtonTitles:nil];
+//    [alertView show];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

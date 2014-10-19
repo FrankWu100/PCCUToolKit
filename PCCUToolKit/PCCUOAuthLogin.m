@@ -320,14 +320,14 @@
         else
         {
             [[self alloc]  hideWebView:NO];
-            return NO;
+            return @"";
         }
     }
     //else if (<#expression#>)
     else
     {
         [[self alloc]  hideWebView:NO];
-        return NO;
+        return @"";
     }
 }
 

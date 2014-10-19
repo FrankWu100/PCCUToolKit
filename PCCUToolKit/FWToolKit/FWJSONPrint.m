@@ -70,7 +70,7 @@
     {
         str = [str stringByAppendingString:@"null"];
     }
-    NSLog(@"%@", str);
+//    NSLog(@"%@", str);
     return str;
 }
 

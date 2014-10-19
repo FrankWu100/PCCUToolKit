@@ -27,7 +27,7 @@
         // Custom initialization
         if (_year.length >= 2 && _year.length <= 3) {
             if (_year.length == 2) {
-                _year = [NSString stringWithFormat:@"%03d", [_year integerValue]];
+                _year = [NSString stringWithFormat:@"%03d", [_year intValue]];
             }
             
             if (_term.length == 1) {

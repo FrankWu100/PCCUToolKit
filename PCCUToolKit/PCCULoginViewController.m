@@ -21,6 +21,7 @@ colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
 
+#define Is3_5InchScreen ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )480 ) < DBL_EPSILON )
 #define Is4InchScreen ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
 #define IOS_VERSION_7 [[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0
@@ -68,18 +69,19 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
     // ButtonImage
     UIImage *btnImageNormal;
     UIImage *btnImageHighlighted;
-    if (Is4InchScreen) {
-        btnImageNormal = [UIImage imageNamed:@"Btn-Sign-In-L-N.png"];
-        btnImageHighlighted = [UIImage imageNamed:@"Btn-Sign-In-L-S.png"];
-    }
-    else
+    if (Is3_5InchScreen)
     {
         btnImageNormal = [UIImage imageNamed:@"Btn-Sign-In-M-N.png"];
         btnImageHighlighted = [UIImage imageNamed:@"Btn-Sign-In-M-S.png"];
     }
+    else
+    {
+        btnImageNormal = [UIImage imageNamed:@"Btn-Sign-In-L-N.png"];
+        btnImageHighlighted = [UIImage imageNamed:@"Btn-Sign-In-L-S.png"];
+    }
     
     // Button
-    UIButton *theloginButton = [[UIButton alloc] initWithFrame:CGRectMake((viewSize.width-btnImageNormal.size.width/2)/2, (viewSize.height-btnImageNormal.size.height/2)*4/7-40+TopLayoutGuide, btnImageNormal.size.width/2, btnImageNormal.size.height/2)];
+    UIButton *theloginButton = [[UIButton alloc] initWithFrame:CGRectMake((viewSize.width-btnImageNormal.size.width)/2, (viewSize.height-btnImageNormal.size.height)*4/7-viewSize.width*4/32+TopLayoutGuide, btnImageNormal.size.width, btnImageNormal.size.height)];
     [theloginButton setBackgroundImage:btnImageNormal forState:UIControlStateNormal];
     [theloginButton setBackgroundImage:btnImageHighlighted forState:UIControlStateHighlighted];
     [theloginButton addTarget:self action:@selector(loginBtn:) forControlEvents:UIControlEventTouchUpInside];
@@ -95,7 +97,10 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
     CGRect viewRect = [[UIScreen mainScreen] bounds];
     CGSize viewSize = viewRect.size;
     
-    UIImageView *theIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake((viewSize.width-120)/2, (viewSize.height-120)*4/7-100+TopLayoutGuide, 120, 120)];
+    double iconSize = viewSize.width * 15 / 32;
+    
+    UIImageView *theIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake((viewSize.width-iconSize)/2, (viewSize.height-iconSize)*4/7-viewSize.width*10/32+TopLayoutGuide, iconSize, iconSize)];
+//    UIImageView *theIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake((viewSize.width-120)/2, (viewSize.height-120)*4/7-100+TopLayoutGuide, 120, 120)];
     //    NSLog(@"%f, %f", (viewSize.width-120)/2, (viewSize.height-120)*4/7-80);
     
     UIImage *iconImage = [UIImage imageNamed:@"iTunesArtworkSample.png"];
@@ -152,7 +157,11 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:a]
         //图片持续移动
         [UIImageView setAnimationBeginsFromCurrentState:YES];
         //重新定义图片的位置和尺寸,位置
-        iconImageView.frame = CGRectMake((viewSize.width-110)/2, (viewSize.height-110)*4/7-160+TopLayoutGuide, 110, 110);
+        
+        double iconSize = viewSize.width * 12 / 32;
+        
+//        UIImageView *theIconImageView = [[UIImageView alloc] initWithFrame:CGRectMake((viewSize.width-iconSize)/2, (viewSize.height-iconSize)*4/7-100+TopLayoutGuide, iconSize, iconSize)];
+        iconImageView.frame = CGRectMake((viewSize.width-iconSize)/2, (viewSize.height-iconSize)*4/7-viewSize.width*16/32+TopLayoutGuide, iconSize, iconSize);
         //完成动画移动
         [UIImageView commitAnimations];
         

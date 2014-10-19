@@ -9,91 +9,113 @@
 #import "PCCUOAuthUserData.h"
 #import "PCCUOAuthLogin.h"
 #import "FWToolKit/FWJSONPrint.h"
-#import <AFNetworking/AFNetworking.h>
+//#import <AFNetworking/AFNetworking.h>
+//#import <SVProgressHUD/SVProgressHUD.h>
 
 @implementation PCCUOAuthUserData
 
-- (void)getUserData
+- (BOOL)getUserData
 {
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+//    UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    
+//    [MBProgressHUD showHUDAddedTo:rootViewController.view animated:YES];
+    
+//    [SVProgressHUD showWithStatus:@"Doing Stuff"];
     //parameterEncoding to AFJSONParameterEncoding
     NSString *url = [[NSString alloc] initWithFormat:@"https://mobi.pccu.edu.tw/DataAPI/userdata/%@/%@/basic",
                      [PCCUOAuthLogin getClientID],
                      [PCCUOAuthLogin getAccessToken]];
-    [manager GET:url
-      parameters:nil
-         success:^(AFHTTPRequestOperation *operation, id responseObject) {
-             //             NSLog(@"JSON: %@", responseObject);
-             
-             NSLog(@"JSON: %@", [[FWJSONPrint alloc] describeDictionary:responseObject]);
-             
-             //             NSError *error;
-             //             NSData *jsonData = [NSJSONSerialization dataWithJSONObject:responseObject
-             //                                                                options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
-             //                                                                  error:&error];
-             //
-             //             if (! jsonData) {
-             //                 NSLog(@"Got an error: %@", error);
-             //             } else {
-             //                 NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-             //
-             //                 NSLog(@"JSON: %@", jsonString);
-             //             }
-
-             BOOL haveError = NO;
-             if ([responseObject isKindOfClass: [NSDictionary class]]) {
-                 if ([responseObject objectForKey:@"Error"]) {
-                     haveError = YES;
-                     NSLog(@"Error : %@", [responseObject objectForKey:@"Error"]);
-                 }
-             }
-             
-             if (!haveError) {
-                 NSLog(@"UserData count: %lu", (unsigned long)[responseObject count] );
-                 if ([responseObject count] == 1) {
-                     NSUserDefaults* defs = [NSUserDefaults standardUserDefaults];
-                     
-                     //                 [defs setObject:[[responseObject[0] objectForKey:@"UserAccount"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forKey:@"UserAccount"];
-                     //                 [defs setObject:[[responseObject[0] objectForKey:@"UserDept"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forKey:@"UserDept"];
-                     //                 [defs setObject:[[responseObject[0] objectForKey:@"UserName"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] forKey:@"UserName"];
-                     
-                     NSString *UserAccountStr = [[responseObject[0] objectForKey:@"UserAccount"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-                     NSString *UserDeptStr = [[responseObject[0] objectForKey:@"UserDept"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-                     NSString *UserNameStr = [[responseObject[0] objectForKey:@"UserName"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-                     
-                     [defs setObject:UserAccountStr forKey:@"UserAccount"];
-                     [defs setObject:UserDeptStr forKey:@"UserDept"];
-                     [defs setObject:UserNameStr forKey:@"UserName"];
-                     
-                     [[NSUserDefaults standardUserDefaults] synchronize];
-                 }
-                 else {
-                     //
-                 }
-             }
-
-//             for(NSDictionary* dict in [self.jsonData allObjects])
-//             {
-//
-//             }
-             
-         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-             NSLog(@"Error: %@", error);
-//             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"error"
-//                                                                 message:[[NSString alloc] initWithFormat:@"%@", error]
-//                                                                delegate:nil
-//                                                       cancelButtonTitle:@"OK"
-//                                                       otherButtonTitles:nil, nil];
-             
-             if (![self haveUserData]) {
-                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"錯誤"
-                                                                     message:[NSString stringWithFormat:@"%d %@", [error code], [[error userInfo] valueForKey:@"NSLocalizedDescription"]]
-                                                                    delegate:self
-                                                           cancelButtonTitle:@"確定"
-                                                           otherButtonTitles:nil];
-                 [alertView show];
-             }
-         }];
+    
+    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    // Fetch the JSON response
+    NSData *urlData;
+    NSURLResponse *response;
+    NSError *error;
+    
+    // Make synchronous request
+    urlData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    
+    if (error) {
+        NSLog(@"Error: %@", error);
+        
+        if (![self haveUserData]) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"錯誤"
+                                                                message:[NSString stringWithFormat:@"%d %@", (int)[error code], [[error userInfo] valueForKey:@"NSLocalizedDescription"]]
+                                                               delegate:self
+                                                      cancelButtonTitle:@"確定"
+                                                      otherButtonTitles:nil];
+            [alertView show];
+            return NO;
+        }
+        else
+        {
+//            [MBProgressHUD showHUDAddedTo:rootViewController.view animated:YES];
+//            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.50 * NSEC_PER_SEC);
+//            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//                // Do something...
+//                [MBProgressHUD hideHUDForView:rootViewController.view animated:YES];
+//            });
+            return YES;
+        }
+    }
+    
+    // Construct a String around the Data from the response
+    NSString *myData = [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
+    NSLog(@"JSON data = %@", myData);
+    
+    //parsing the JSON response
+    NSError *jsonError = nil;
+    id jsonObject = [NSJSONSerialization
+                     JSONObjectWithData:urlData
+                     options:NSJSONReadingAllowFragments
+                     error:&jsonError];
+    
+    NSLog(@"%@", [[FWJSONPrint alloc] describeDictionary:jsonObject]);
+    
+    BOOL haveError = NO;
+    if ([jsonObject isKindOfClass: [NSDictionary class]]) {
+        if ([jsonObject objectForKey:@"Error"]) {
+            haveError = YES;
+            NSLog(@"Error : %@", [jsonObject objectForKey:@"Error"]);
+            
+            return NO;
+        }
+    }
+    
+    if (!haveError) {
+        NSLog(@"UserData count: %lu", (unsigned long)[jsonObject count] );
+        if ([jsonObject count] == 1) {
+            NSUserDefaults* defs = [NSUserDefaults standardUserDefaults];
+            
+            NSString *UserAccountStr = [[jsonObject[0] objectForKey:@"UserAccount"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            NSString *UserDeptStr = [[jsonObject[0] objectForKey:@"UserDept"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            NSString *UserNameStr = [[jsonObject[0] objectForKey:@"UserName"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            
+            [defs setObject:UserAccountStr forKey:@"UserAccount"];
+            [defs setObject:UserDeptStr forKey:@"UserDept"];
+            [defs setObject:UserNameStr forKey:@"UserName"];
+            
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+//            [MBProgressHUD showHUDAddedTo:rootViewController.view animated:YES];
+//            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.50 * NSEC_PER_SEC);
+//            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//                // Do something...
+//                [MBProgressHUD hideHUDForView:rootViewController.view animated:YES];
+//            });
+            return YES;
+        }
+        else {
+            
+            return NO;
+        }
+    }
+    else
+    {
+        return NO;
+    }
 }
 
 - (BOOL)haveUserData
@@ -106,11 +128,20 @@
     }
 }
 
-- (void)checkUserData
+- (BOOL)checkUserData
 {
 //    if (![self haveUserData]) {
-        [self getUserData];
+        if ([self getUserData])
+        {
+            NSLog(@"getUserData ok");
+            return YES;
+        }
+        else
+        {
+            return NO;
+        }
 //    }
+    
 }
 
 - (NSString *)haveUserAccount
@@ -131,7 +162,7 @@
     if (userAccount == nil)
     {
         NSLog(@"UserAccount not set.");
-        abort();
+//        abort();
     }
     return userAccount;
 }
@@ -160,7 +191,7 @@
     if (userDept == nil)
     {
         NSLog(@"UserDept not set.");
-        abort();
+//        abort();
     }
     return userDept;
 }
@@ -178,7 +209,7 @@
     if (userName == nil)
     {
         NSLog(@"UserName not set.");
-        abort();
+//        abort();
     }
     return userName;
 }

@@ -12,7 +12,7 @@
 
 //- (void)getUserData;
 - (BOOL)haveUserData;
-- (void)checkUserData;
+- (BOOL)checkUserData;
 
 - (NSString *)getUserAccount;
 - (NSString *)getUserDept;
