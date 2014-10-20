@@ -9,7 +9,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '6.0'
   s.source_files = 'PCCUToolKit/*.{h,m}'
   s.resource     = 'PCCUToolKit/*.{strings,png,xcassets}'
-  s.ios.dependency  'AFNetworking', '~> 2.4'
   s.ios.dependency  'SVWebViewController', '~> 1.0'
 
   s.subspec 'FWToolKit' do |ss|
